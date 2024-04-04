@@ -8,7 +8,7 @@ import { ITask } from '@app/models/Task.model';
 export class TaskService {
 
   private taskListSource = new BehaviorSubject<ITask[]>([]);
-  key = "mydayapp-angular-solution"
+  key = "mydayapp-angular"
   currentList!: ITask[];
   taskList$ = this.taskListSource.asObservable()
 
