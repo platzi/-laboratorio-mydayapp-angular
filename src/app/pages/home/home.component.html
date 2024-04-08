@@ -8,6 +8,8 @@
         placeholder="Type new todo"
         autofocus
         type="text"
+        [formControl]="titleControl"
+        (change)="add()"
       />
     </div>
   </header>
@@ -15,7 +17,17 @@
     <!-- This section should be hidden by default and shown when there are todos -->
     <section class="main">
       <ul class="todo-list">
-        <li class="completed">
+        @for(task of tasks(); track task.id) {
+          <li>
+            <div class="view">
+              <input class="toggle" type="checkbox" />
+              <label>{{task.title}}</label>
+              <button class="destroy"></button>
+            </div>
+            <input class="edit" value="Buy a unicorn" />
+          </li>
+        }
+        <!-- <li class="completed">
           <div class="view">
             <input class="toggle" type="checkbox" checked />
             <label>Learn JavaScript</label>
@@ -23,14 +35,7 @@
           </div>
           <input class="edit" value="Learn JavaScript" />
         </li>
-        <li>
-          <div class="view">
-            <input class="toggle" type="checkbox" />
-            <label>Buy a unicorn</label>
-            <button class="destroy"></button>
-          </div>
-          <input class="edit" value="Buy a unicorn" />
-        </li>
+        
         <li class="editing">
           <div class="view">
             <input class="toggle" type="checkbox" />
@@ -38,7 +43,7 @@
             <button class="destroy"></button>
           </div>
           <input class="edit" value="Make dishes" />
-        </li>
+        </li> -->
       </ul>
     </section>
     <!-- This footer should be hidden by default and shown when there are todos -->
