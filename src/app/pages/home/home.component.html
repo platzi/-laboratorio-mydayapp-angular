@@ -9,7 +9,7 @@
         autofocus
         type="text"
         [formControl]="titleControl"
-        (change)="add()"
+        (change)="addTask()"
       />
     </div>
   </header>
@@ -18,40 +18,20 @@
       <!-- This section should be hidden by default and shown when there are todos -->
       <section class="main">
         <ul class="todo-list">
-          @for(task of tasks(); track task.id) {
-            <li>
+          @for(task of tasks(); track task.id; let i = $index) {
+            <li  [class.completed]="task.completed" [class.editing]="task.editing">
               <div class="view">
-                <input class="toggle" type="checkbox" />
-                <label>{{task.title}}</label>
+                <input class="toggle" type="checkbox" [checked]="task.completed" (change)="toggleCompleted(i)" />
+                <label (dblclick)="editingMode(i)"  >{{task.title}}</label>
                 <button class="destroy"></button>
               </div>
-              <input class="edit" value="Buy a unicorn" />
+              <input class="edit" [autofocus]="task.editing" [value]="task.title" (change)="updateTask($event, i)" (keydown.esc)="exitEditingMode()" />
             </li>
           }
-          <!-- <li class="completed">
-            <div class="view">
-              <input class="toggle" type="checkbox" checked />
-              <label>Learn JavaScript</label>
-              <button class="destroy"></button>
-            </div>
-            <input class="edit" value="Learn JavaScript" />
-          </li>
-          
-          <li class="editing">
-            <div class="view">
-              <input class="toggle" type="checkbox" />
-              <label>Make dishes</label>
-              <button class="destroy"></button>
-            </div>
-            <input class="edit" value="Make dishes" />
-          </li> -->
         </ul>
       </section>
-      <!-- This footer should be hidden by default and shown when there are todos -->
       <footer class="footer">
-        <!-- This should be `0 items left` by default -->
         <span class="todo-count"><strong>{{tasks().length}}</strong> {{ tasks().length > 1 ? "items" : "item"}} left</span>
-        <!-- Remove this if you don't implement routing -->
         <ul class="filters">
           <li>
             <a routerLink="/" class="selected">All</a>
