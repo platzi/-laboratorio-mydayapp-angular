@@ -9,7 +9,7 @@
         autofocus
         type="text"
         [formControl]="titleControl"
-        (change)="addTask()"
+        (keydown.enter)="addTask()"
       />
     </div>
   </header>
@@ -25,7 +25,7 @@
                 <label (dblclick)="editingMode(i)"  >{{task.title}}</label>
                 <button class="destroy"></button>
               </div>
-              <input class="edit" [autofocus]="task.editing" [value]="task.title" (change)="updateTask($event, i)" (keydown.esc)="exitEditingMode()" />
+              <input class="edit" [autofocus]="task.editing" [value]="task.title" (keydown.enter)="updateTask($event, i)" (keydown.esc)="exitEditingMode()" />
             </li>
           }
         </ul>

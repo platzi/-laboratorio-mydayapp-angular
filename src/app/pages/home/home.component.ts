@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
       completed: false
     }
 
-    this.tasks.update((prev) => [newTask, ...prev]);
+    this.tasks.update((prev) => [...prev, newTask]);
   }
 
   toggleCompleted(index: number): void {
