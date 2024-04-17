@@ -8,7 +8,10 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     pathMatch: 'full'
-  }
+  } ,{
+    path: ':estado',
+    component: HomeComponent,
+  },
 ];
 
 @NgModule({
