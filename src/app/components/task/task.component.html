@@ -1,0 +1,58 @@
+<li 
+[class.completed]="task.completed"
+*ngIf="!editing; else editForm"
+(dblclick)="onEdit()"
+>
+  <div class="view">
+    <input 
+      class="toggle"
+      type="checkbox" 
+      [checked]="task.completed"
+      (change)="changeStatus()"
+      
+      />
+    <label>{{ task.title }}</label>
+    <button (click)="onDelete()" class="destroy"></button>
+  </div>
+  <input class="edit" value="Learn JavaScript" />
+</li>
+<ng-template #editForm>
+  <li class="editing">
+    <input
+      class="edit"
+      [(ngModel)]="task.title"
+      (keypress)="saveChanges($event)"
+      (keyup.esc)="onEdit()"
+      autofocus
+    />
+  </li>
+</ng-template>
+
+
+
+
+<!--<li class="completed">
+    <div class="view">
+      <input class="toggle" type="checkbox" checked />
+      <label>Learn JavaScript</label>
+      <button class="destroy"></button>
+    </div>
+    <input class="edit" value="Learn JavaScript" />
+  </li>
+
+  <li>
+    <div class="view">
+      <input class="toggle" type="checkbox" />
+      <label>Buy a unicorn</label>
+      <button class="destroy"></button>
+    </div>
+    <input class="edit" value="Buy a unicorn" />
+  </li>
+  <li class="editing">
+    <div class="view">
+      <input class="toggle" type="checkbox" />
+      <label>Make dishes</label>
+      <button class="destroy"></button>
+    </div>
+    <input class="edit" value="Make dishes" />
+  </li>-->

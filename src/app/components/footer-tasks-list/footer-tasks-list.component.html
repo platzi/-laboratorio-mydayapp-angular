@@ -1,0 +1,32 @@
+    <!-- This footer should be hidden by default and shown when there are todos -->
+    <footer class="footer">
+        <!-- This should be `0 items left` by default -->
+        <span class="todo-count"  [ngPlural]="tasksCount">
+          <strong>{{ tasksCount }}</strong> 
+          <ng-template ngPluralCase="=1"> item left</ng-template>
+          <ng-template ngPluralCase="other"> items left</ng-template>
+        </span>
+        <!-- Remove this if you don't implement routing -->
+        <ul class="filters">
+          <li>
+            <a routerLink="/" 
+            routerLinkActive="selected"
+            [routerLinkActiveOptions]="{ exact: true }">
+              All
+            </a>
+          </li>
+          <li>
+            <a routerLink="/pending"  routerLinkActive="selected">Pending</a>
+          </li>
+          <li>
+            <a routerLink="/completed"  routerLinkActive="selected">Completed</a>
+          </li>
+        </ul>
+        <!-- Hidden if no completed items are left ↓ -->
+        <button class="clear-completed"
+        *ngIf="completedTasksCount > 0"
+        (click)="clearCompletedTask()"
+        >
+          Clear completed
+        </button>
+      </footer>
