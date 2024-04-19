@@ -1,0 +1,11 @@
+<li 
+          (dblclick)="editingTask(task)"
+          [class.editing]="task.editing"
+          [class.completed]="task.completed">
+          <div class="view">
+            <input class="toggle" type="checkbox" [checked]="task.completed" (change)="updateTask(task)"/>
+            <label>{{task.title}}</label>
+            <button class="destroy" (click)="deleteTask(task)"></button>
+          </div>
+          <input class="edit" [value]="task.title" (keydown.enter)="editingTextTask(task,$event)"/>
+</li>

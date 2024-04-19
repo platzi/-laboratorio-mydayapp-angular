@@ -1,0 +1,7 @@
+  <section class="main" *ngIf="tasksList.length>0">
+    <ul class="todo-list">
+    <app-task 
+    *ngFor="let task of tasksList" 
+    [task]="task"/>
+    </ul>
+  </section>

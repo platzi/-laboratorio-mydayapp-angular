@@ -1,0 +1,31 @@
+<!-- <footer class="footer" *ngIf="tasksJota.length>0"> -->
+  <footer class="footer" *ngIf="showFooter">
+    <!-- This should be `0 items left` by default -->
+    <span class="todo-count"><strong>{{item}}</strong> {{item === 1 ? 'item' : 'items'}} left</span>
+    <!-- Remove this if you don't implement routing -->
+    <ul class="filters">
+      <li>
+        <a routerLink="/"
+        routerLinkActive="selected"
+        [routerLinkActiveOptions]="{exact:true}"
+        (click)="changeFilter('all')" 
+        [class.selected]="filter=='all'">All</a>
+      </li>
+      <li>
+        <a routerLink="/pending"
+        routerLinkActive="selected"
+        (click)="changeFilter('pending')" 
+        [class.selected]="filter=='pending'"
+        >Pending</a>
+      </li>
+      <li>
+        <a routerLink="/completed"
+        routerLinkActive="selected"
+        (click)="changeFilter('completed')" 
+        [class.selected]="filter=='completed'"
+        >Completed</a>
+      </li>
+    </ul>
+    <!-- Hidden if no completed items are left ↓ -->
+    <button class="clear-completed" (click)="clearCompleted()" *ngIf="clear">Clear completed</button>
+  </footer>

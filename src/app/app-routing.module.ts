@@ -1,13 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './pages/home/home.component';
+import { HomeComponent } from './components/pages/home/home.component';
+import { PendingComponent } from './components/pages/pending/pending.component';
+import { CompletedComponent } from './components/pages/completed/completed.component';
+import { LayoutComponent } from './components/layout/layout.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
-    pathMatch: 'full'
+    component: LayoutComponent,
+    //pathMatch: 'full',
+    children:[
+      {
+        path: '',
+        component: HomeComponent,
+      },
+      {
+        path: 'pending',
+        component: PendingComponent
+      },
+      {
+        path: 'completed',
+        component: CompletedComponent
+      }
+    ]
   }
 ];
 
