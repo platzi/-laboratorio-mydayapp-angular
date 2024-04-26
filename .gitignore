@@ -6,12 +6,15 @@
 /out-tsc
 /bazel-out
 
+package-lock.json
+
 # Node
 /node_modules
 npm-debug.log
 yarn-error.log
 
 # IDEs and editors
+.nx/
 .idea/
 .project
 .classpath
