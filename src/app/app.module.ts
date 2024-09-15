@@ -9,15 +9,12 @@ import { HeaderComponent } from './domains/todo/components/header/header.compone
 import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    LayoutComponent,
-    FooterComponent,
-    HeaderComponent,
-  ],
-  imports: [BrowserModule, AppRoutingModule],
-  providers: [],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    imports: [BrowserModule, AppRoutingModule, HomeComponent,
+        LayoutComponent,
+        FooterComponent,
+        HeaderComponent],
+    providers: [],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}
