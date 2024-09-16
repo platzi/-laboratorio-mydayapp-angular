@@ -4,7 +4,7 @@
     <!-- This section should be hidden by default and shown when there are todos -->
     <section class="main" *ngIf="taskService.list().length">
       <ul class="todo-list">
-        @for( task of taskService.list(); track task; let i = $index){
+        @for( task of taskService.taskFilter(); track task; let i = $index){
         <app-task [task]="task" [index]="i"></app-task>
         }
       </ul>

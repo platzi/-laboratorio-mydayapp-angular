@@ -8,4 +8,18 @@ export const routes: Routes = [
         (m) => m.HomeComponent
       ),
   },
+  {
+    path: 'pending',
+    loadComponent: () =>
+      import('./domains/home/pages/home/home.component').then(
+        (m) => m.HomeComponent
+      ),
+  },
+  {
+    path: 'completed',
+    loadComponent: () =>
+      import('./domains/home/pages/home/home.component').then(
+        (m) => m.HomeComponent
+      ),
+  },
 ];
