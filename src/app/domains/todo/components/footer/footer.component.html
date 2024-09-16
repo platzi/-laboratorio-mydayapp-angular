@@ -1,0 +1,43 @@
+@if(taskService.list().length){
+<footer class="footer">
+  <!-- This should be `0 items left` by default -->
+  <span class="todo-count"
+    ><strong>{{ taskService.taskFilter().length }}</strong>
+    {{ taskService.taskFilter().length === 1 ? "item" : "items" }} left</span
+  >
+  <!-- Remove this if you don't implement routing -->
+  <ul class="filters">
+    <li>
+      <a
+        routerLink="/"
+        routerLinkActive="selected"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >All</a
+      >
+    </li>
+    <li>
+      <a
+        routerLink="/pending"
+        routerLinkActive="selected"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Pending</a
+      >
+    </li>
+
+    <li>
+      <a
+        routerLink="/completed"
+        routerLinkActive="selected"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Completed</a
+      >
+    </li>
+  </ul>
+  <!-- Hidden if no completed items are left ↓ -->
+  @if(taskService.existCompleted() ){
+  <button class="clear-completed" (click)="clearCompletedTask()">
+    Clear completed
+  </button>
+  }
+</footer>
+}

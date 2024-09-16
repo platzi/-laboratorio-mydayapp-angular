@@ -1,0 +1,15 @@
+<section class="todoapp">
+  <app-header></app-header>
+  <div class="container todoapp-wrapper">
+    <!-- This section should be hidden by default and shown when there are todos -->
+    <section class="main" *ngIf="taskService.list().length">
+      <ul class="todo-list">
+        @for( task of taskService.taskFilter(); track task; let i = $index){
+        <app-task [task]="task" [index]="i"></app-task>
+        }
+      </ul>
+    </section>
+    <!-- This footer should be hidden by default and shown when there are todos -->
+    <app-footer></app-footer>
+  </div>
+</section>
