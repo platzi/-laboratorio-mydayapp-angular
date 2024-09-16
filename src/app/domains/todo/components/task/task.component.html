@@ -1,1 +1,19 @@
-<p>task works!</p>
+<li [class.completed]="task.completed" [class.editing]="task.editing">
+  <div class="view">
+    <input
+      class="toggle"
+      type="checkbox"
+      [checked]="task.completed"
+      (click)="markAsCompleted(index)"
+    />
+    <label (dblclick)="editing(index)">{{ task.title }}</label>
+    <button class="destroy" (click)="removeTask(index)"></button>
+  </div>
+  <input
+    class="edit"
+    [value]="task.title"
+    [autofocus]="task.editing"
+    (keydown.esc)="editing(index)"
+    (keydown.enter)="updateTask($event, task, index)"
+  />
+</li>
