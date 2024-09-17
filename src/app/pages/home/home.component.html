@@ -1,42 +1,47 @@
 <section class="todoapp">
+  <app-header />
 
-  <app-header/>
-
+  @if(tasks().length !== 0){
 
   <div class="container todoapp-wrapper">
     <!-- This section should be hidden by default and shown when there are todos -->
     <section class="main">
       <ul class="todo-list">
-        <li class="completed">
-          <div class="view">
-            <input class="toggle" type="checkbox" checked />
-            <label>Learn JavaScript</label>
-            <button class="destroy"></button>
-          </div>
-          <input class="edit" value="Learn JavaScript" />
-        </li>
-        <li>
-          <div class="view">
-            <input class="toggle" type="checkbox" />
-            <label>Buy a unicorn</label>
-            <button class="destroy"></button>
-          </div>
-          <input class="edit" value="Buy a unicorn" />
-        </li>
-        <li class="editing">
+        <!--
+          <li class="completed">
+            <div class="view">
+              <input class="toggle" type="checkbox" checked />
+              <label>Learn JavaScript</label>
+              <button class="destroy"></button>
+            </div>
+            <input class="edit" value="Learn JavaScript" />
+          </li>
+ -->
+          @for (task of tasks(); track task.id) {
+            <li>
+              <div class="view">
+                <input class="toggle" type="checkbox" />
+                <label>{{task.title}}</label>
+                <button class="destroy"></button>
+              </div>
+              <input class="edit" value="Buy a unicorn" />
+            </li>
+
+          }
+
+
+       <!--  <li class="editing">
           <div class="view">
             <input class="toggle" type="checkbox" />
             <label>Make dishes</label>
             <button class="destroy"></button>
           </div>
           <input class="edit" value="Make dishes" />
-        </li>
+        </li> -->
       </ul>
     </section>
 
-
-
+    <app-footer />
   </div>
-
-  <app-footer/>
+  }
 </section>

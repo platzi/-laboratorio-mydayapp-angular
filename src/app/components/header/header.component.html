@@ -1,12 +1,18 @@
 <header class="header">
-  <div class="container">
+  <div class="container" [formGroup]="formTask">
     <h1>My Day</h1>
     <p>All my tasks in one place</p>
     <input
       class="new-todo"
       placeholder="Type new todo"
+      formControlName="task"
+      (keyup.enter)="addNewTask()"
       autofocus
       type="text"
     />
+
+    @if (formTask.controls.task.errors) {
+    <p>Este campo es requerido</p>
+    }
   </div>
-</header><p>header works!</p>
+</header>
