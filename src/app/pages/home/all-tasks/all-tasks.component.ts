@@ -1,22 +1,17 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  OnInit,
-  Signal,
-  computed,
-  inject,
-  signal,
-} from '@angular/core';
+import { Component, Signal, computed, inject, signal } from '@angular/core';
 import { TaskTodo } from 'src/app/interfaces/task';
 import { TodoService } from 'src/app/services/todo-service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
+  selector: 'app-all-tasks',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './all-tasks.component.html',
+
 })
-export class HomeComponent implements OnInit {
+export class AllTasksComponent {
+
   private todoService = inject(TodoService);
 
   public inputEditValue = signal('');
@@ -57,4 +52,5 @@ export class HomeComponent implements OnInit {
 
     this.todoService.editTaskTitle(taskId, this.inputEditValue().trim());
   }
+
 }
