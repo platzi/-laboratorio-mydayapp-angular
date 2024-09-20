@@ -1,0 +1,20 @@
+@for (task of tasks(); track task.id) {
+  <li [ngClass]="{ completed: task.completed, editing: task.edit }">
+    <div class="view">
+      <input
+        class="toggle"
+        [checked]="task.completed"
+        (click)="toogleTask(task.id)"
+        type="checkbox"
+      />
+      <label (dblclick)="openEditMode(task.id)">{{ task.title }}</label>
+      <button class="destroy" (click)="removeTask(task.id)"></button>
+    </div>
+    <input class="edit"
+    (input)="changeInputValue($event)"
+    (keydown.enter)="editTask(task.id)"
+    (keydown.esc)="closeEditMode(task.id)"
+    [value]="task.title" />
+  </li>
+}
+

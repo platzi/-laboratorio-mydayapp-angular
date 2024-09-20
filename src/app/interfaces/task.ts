@@ -1,5 +1,6 @@
 export interface TaskTodo {
   id:string,
   title:string,
-  completed:boolean
+  completed:boolean,
+  edit:boolean
 }
