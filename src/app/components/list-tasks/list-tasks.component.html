@@ -1,28 +1,16 @@
 <section class="main">
-    <ul class="todo-list">
-      <li class="completed">
+  <ul class="todo-list">
+    @for (task of tasks(); track $index) {
+      <li 
+      [class.completed]="task.completed"
+      [class.editing]="task.editing">
         <div class="view">
-          <input class="toggle" type="checkbox" checked />
-          <label>Learn JavaScript</label>
+          <input class="toggle" type="checkbox" [checked]="task.completed"/>
+          <label>{{task.title}}</label>
           <button class="destroy"></button>
         </div>
         <input class="edit" value="Learn JavaScript" />
       </li>
-      <li>
-        <div class="view">
-          <input class="toggle" type="checkbox" />
-          <label>Buy a unicorn</label>
-          <button class="destroy"></button>
-        </div>
-        <input class="edit" value="Buy a unicorn" />
-      </li>
-      <li class="editing">
-        <div class="view">
-          <input class="toggle" type="checkbox" />
-          <label>Make dishes</label>
-          <button class="destroy"></button>
-        </div>
-        <input class="edit" value="Make dishes" />
-      </li>
-    </ul>
-  </section>
+    }
+  </ul>
+</section>
