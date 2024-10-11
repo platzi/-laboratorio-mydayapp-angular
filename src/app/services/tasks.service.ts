@@ -26,4 +26,15 @@ export class TasksService {
 
   constructor() { 
   }
+
+  addTask(text: string){
+    const newTask: Task = {
+      id: Date.now().toString(),
+      title: text,
+      completed: false,
+      editing: false
+    };
+
+    this.tasks.set([...this.tasks(), newTask]);
+  }
 }
