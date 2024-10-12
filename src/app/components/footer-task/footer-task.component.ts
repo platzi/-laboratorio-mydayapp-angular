@@ -11,4 +11,8 @@ import { TasksService } from 'src/app/services/tasks.service';
 export class FooterTaskComponent {
   private taskService = inject(TasksService);
   tasks = this.taskService.tasks;
+
+  clearCompleted(){
+    this.taskService.deleteAllTaskCompleted();
+  }
 }

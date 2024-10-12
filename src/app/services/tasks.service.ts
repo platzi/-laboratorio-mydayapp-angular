@@ -53,5 +53,15 @@ export class TasksService {
     })
   }
 
+  deleteTask(index: number){
+    this.tasks.update((tasks) => 
+      tasks.filter((task, position) => position !== index)
+    )
+  }
+  
+  deleteAllTaskCompleted(){
+    this.tasks.update((tasks) => 
+    tasks.filter((task, position) => !task.completed))
+  }
 
 }
