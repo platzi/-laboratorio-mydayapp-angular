@@ -12,4 +12,47 @@ export class ListTasksComponent {
   private taskService = inject(TasksService);
 
   tasks = this.taskService.tasks;
+
+  
+  editingTask(index: number, event: Event){
+    this.tasks.update((tasks) => {
+      return tasks.map((task, position) => {
+        if (position === index){
+          return {
+            ...task,
+            editing: true
+          }
+        }
+        return {
+          ...task,
+          editing: false
+        };
+      })
+    })
+  }
+  
+  exitEditingTask(){
+    console.log("entra");
+    this.tasks.update((tasks) => {
+      return tasks.map((task) => {
+        return {
+          ...task,
+          editing: false
+        };
+      })
+    })
+  }
+
+  updateTextTask(event: Event, index: number){
+    const newTask = (event.target as HTMLInputElement).value.trim();
+    
+    if(newTask !== ''){
+      this.taskService.updateTask(newTask, index);
+    }
+  }
+
+  
+
+  
 }
+

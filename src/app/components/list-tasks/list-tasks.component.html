@@ -3,13 +3,16 @@
     @for (task of tasks(); track $index) {
       <li 
       [class.completed]="task.completed"
-      [class.editing]="task.editing">
+      [class.editing]="task.editing"
+      (dblclick)="editingTask($index, $event)">
         <div class="view">
           <input class="toggle" type="checkbox" [checked]="task.completed"/>
           <label>{{task.title}}</label>
           <button class="destroy"></button>
         </div>
-        <input class="edit" value="Learn JavaScript" />
+        <input class="edit" [value]="task.title"
+        (keydown.enter)="updateTextTask($event, $index)"
+        (keydown.esc)="exitEditingTask()"/>
       </li>
     }
   </ul>

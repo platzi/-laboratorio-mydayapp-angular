@@ -37,4 +37,21 @@ export class TasksService {
 
     this.tasks.set([...this.tasks(), newTask]);
   }
+
+  updateTask(text: string, index: number){
+    this.tasks.update((tasks) => {
+      return tasks.map((task, position) => {
+        if(index === position){
+          return {
+            ...task,
+            title: text,
+            editing: false
+          }
+        }
+        return task
+      })
+    })
+  }
+
+
 }
