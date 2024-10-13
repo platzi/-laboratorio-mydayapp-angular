@@ -38,6 +38,20 @@ export class TasksService {
     this.tasks.set([...this.tasks(), newTask]);
   }
 
+  changeCompletedTask(index: number){
+    this.tasks.update((tasks) => {
+      return tasks.map((task, position) => {
+        if(index === position){
+          return {
+            ...task,
+            completed: !task.completed
+          }
+        }
+        return task
+      })
+    })
+  }
+
   updateTask(text: string, index: number){
     this.tasks.update((tasks) => {
       return tasks.map((task, position) => {

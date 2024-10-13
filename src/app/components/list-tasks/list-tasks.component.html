@@ -6,7 +6,8 @@
       [class.editing]="task.editing"
       (dblclick)="editingTask($index, $event)">
         <div class="view">
-          <input class="toggle" type="checkbox" [checked]="task.completed"/>
+          <input class="toggle" type="checkbox" [checked]="task.completed"
+          (click)="handleCompletedTask($index)"/>
           <label>{{task.title}}</label>
           <button class="destroy"></button>
         </div>

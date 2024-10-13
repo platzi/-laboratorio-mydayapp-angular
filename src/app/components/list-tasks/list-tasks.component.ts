@@ -13,6 +13,9 @@ export class ListTasksComponent {
 
   tasks = this.taskService.tasks;
 
+  handleCompletedTask(index: number){
+    this.taskService.changeCompletedTask(index);
+  }
   
   editingTask(index: number, event: Event){
     this.tasks.update((tasks) => {
@@ -32,7 +35,6 @@ export class ListTasksComponent {
   }
   
   exitEditingTask(){
-    console.log("entra");
     this.tasks.update((tasks) => {
       return tasks.map((task) => {
         return {
