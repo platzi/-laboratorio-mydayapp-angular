@@ -12,6 +12,7 @@ export class ListTasksComponent {
   private taskService = inject(TasksService);
 
   tasks = this.taskService.tasks;
+  filteredTasks = this.taskService.filteredTasks;
 
   handleCompletedTask(index: number){
     this.taskService.changeCompletedTask(index);

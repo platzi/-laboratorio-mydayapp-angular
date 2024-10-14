@@ -1,4 +1,4 @@
-import { effect, inject, Injectable, Injector, signal } from '@angular/core';
+import { computed, effect, inject, Injectable, Injector, signal } from '@angular/core';
 import { Task } from '../models/task';
 import { LocalStorageService } from './local-storage.service';
 
@@ -10,6 +10,20 @@ export class TasksService {
   private injector = inject(Injector);
 
   tasks = signal<Task[]>([]);
+  filter = signal('all');
+
+  filteredTasks = computed(() => {
+    const filter = this.filter();
+    const tasks = this.tasks();
+
+    if(filter === 'pending'){
+      return tasks.filter(tasks => !tasks.completed);
+    }
+    if(filter === 'completed'){
+      return tasks.filter(tasks => tasks.completed);
+    }
+    return tasks;
+  });
   
   constructor() { 
     const storage = this.storageService.getItems();
@@ -20,6 +34,10 @@ export class TasksService {
     }
 
     this.trackTacks();
+  }
+
+  changeFilter(filter: 'all'| 'pending' | 'completed'){
+    this.filter.set(filter);
   }
 
   trackTacks(){

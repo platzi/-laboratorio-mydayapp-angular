@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { TasksService } from 'src/app/services/tasks.service';
 
 @Component({
@@ -10,9 +10,15 @@ import { TasksService } from 'src/app/services/tasks.service';
 })
 export class FooterTaskComponent {
   private taskService = inject(TasksService);
-  tasks = this.taskService.tasks;
+  tasks = this.taskService.tasks();
+  filter = this.taskService.filter;
+  filteredTasks = this.taskService.filteredTasks;
 
   clearCompleted(){
     this.taskService.deleteAllTaskCompleted();
+  }
+
+  handleFilter(filter: 'all'| 'pending' | 'completed'){
+    this.taskService.changeFilter(filter);
   }
 }

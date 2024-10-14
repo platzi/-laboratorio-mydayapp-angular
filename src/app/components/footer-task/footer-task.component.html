@@ -1,23 +1,27 @@
 <footer class="footer">
-    <!-- This should be `0 items left` by default -->
     <span class="todo-count">
-      <strong>{{tasks().length}}</strong>
-      {{tasks().length === 1 ? 'item' : 'items'}}
-      left
+      <strong>{{filteredTasks().length}}</strong>
+      {{filteredTasks().length === 1 ? 'item' : 'items'}} left
     </span>
-    <!-- Remove this if you don't implement routing -->
+
     <ul class="filters">
       <li>
-        <a routerLink="/" class="selected">All</a>
+        <a routerLink="/"
+        (click)="handleFilter('all')"
+        [class.selected]="filter() === 'all'">All</a>
       </li>
       <li>
-        <a routerLink="/pending">Pending</a>
+        <a routerLink="/pending"
+        (click)="handleFilter('pending')"
+        [class.selected]="filter() === 'pending'">Pending</a>
       </li>
       <li>
-        <a routerLink="/completed">Completed</a>
+        <a routerLink="/completed"
+        (click)="handleFilter('completed')"
+        [class.selected]="filter() === 'completed'">Completed</a>
       </li>
     </ul>
-    <!-- Hidden if no completed items are left ↓ -->
+
     <button class="clear-completed"
     (click)="clearCompleted()">Clear completed</button>
 </footer>

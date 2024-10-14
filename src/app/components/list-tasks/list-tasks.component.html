@@ -1,6 +1,6 @@
 <section class="main">
   <ul class="todo-list">
-    @for (task of tasks(); track $index) {
+    @for (task of filteredTasks(); track $index) {
       <li 
       [class.completed]="task.completed"
       [class.editing]="task.editing"
