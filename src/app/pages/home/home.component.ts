@@ -19,10 +19,12 @@ export class HomeComponent{
   tasks = this.taskServices.tasks;
   
   addTask(event: Event){
-    const newTask = (event.target as HTMLInputElement).value.trim();
+    const input = event.target as HTMLInputElement;
+    const newTask = input.value.trim();
     
     if(newTask !== ''){
       this.taskServices.addTask(newTask);
+      input.value = '';
     }
   }
 
