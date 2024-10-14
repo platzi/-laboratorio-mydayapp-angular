@@ -16,7 +16,7 @@ export class ListTasksComponent {
   handleCompletedTask(index: number){
     this.taskService.changeCompletedTask(index);
   }
-  
+
   editingTask(index: number, event: Event){
     this.tasks.update((tasks) => {
       return tasks.map((task, position) => {
@@ -52,9 +52,5 @@ export class ListTasksComponent {
       this.taskService.updateTask(newTask, index);
     }
   }
-
-  
-
-  
+ 
 }
-

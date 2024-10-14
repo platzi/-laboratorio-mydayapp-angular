@@ -1,30 +1,32 @@
-import { Injectable, signal } from '@angular/core';
+import { effect, inject, Injectable, Injector, signal } from '@angular/core';
 import { Task } from '../models/task';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TasksService {
-  tasks = signal<Task[]>([
-    {
-      id: `1`,
-      title: `Learn JavaScript`,
-      completed: true,
-      editing: false
-    },{
-      id: `2`,
-      title: `Buy a unicorn`,
-      completed: false,
-      editing: false
-    },{
-      id: `3`,
-      title: `Make dishes`,
-      completed: false,
-      editing: true
-    }
-  ]);
+  private storageService = inject(LocalStorageService);
+  private injector = inject(Injector);
 
+  tasks = signal<Task[]>([]);
+  
   constructor() { 
+    const storage = this.storageService.getItems();
+
+    if (storage) {
+      const tasks = storage;
+      this.tasks.set(tasks);
+    }
+
+    this.trackTacks();
+  }
+
+  trackTacks(){
+    effect(() => {
+      const tasks = this.tasks();
+      this.storageService.setTasks(tasks);
+    }, {injector: this.injector});
   }
 
   addTask(text: string){
