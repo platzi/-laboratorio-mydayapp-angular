@@ -16,7 +16,8 @@ import { TasksService } from 'src/app/services/tasks.service';
 })
 export class HomeComponent{
   private taskServices = inject(TasksService);
-
+  tasks = this.taskServices.tasks;
+  
   addTask(event: Event){
     const newTask = (event.target as HTMLInputElement).value.trim();
     

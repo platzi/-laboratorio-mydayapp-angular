@@ -13,9 +13,9 @@
     </div>
   </header>
   <div class="container todoapp-wrapper">
-  
-    <app-list-tasks></app-list-tasks>
-    <app-footer-task></app-footer-task>
-    
+    @if(tasks().length > 0){
+      <app-list-tasks></app-list-tasks>
+      <app-footer-task></app-footer-task>
+    }
   </div>
 </section>
