@@ -1,0 +1,15 @@
+<li 
+    [class.completed]="task.completed"
+    [class.editing]="task.editing"
+    (dblclick)="handleEditingTask()">
+    <div class="view">
+        <input class="toggle" type="checkbox" [checked]="task.completed"
+        (click)="handleCompletedTask()"/>
+        <label>{{task.title}}</label>
+        <button class="destroy"
+        (click)="handleDeleteTask()"></button>
+    </div>
+    <input class="edit" [value]="task.title"
+    (keydown.enter)="handleUpdateTextTask($event)"
+    (keydown.esc)="handleExitEditingTask()"/>
+</li>

@@ -1,0 +1,7 @@
+<section class="main">
+  <ul class="todo-list">
+    @for (task of filteredTasks(); track $index) {
+      <app-task [task]="task" [index]="$index"></app-task>
+    }
+  </ul>
+</section>

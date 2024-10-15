@@ -1,0 +1,28 @@
+<footer class="footer">
+    <span class="todo-count">
+      <strong>{{filteredTasks().length}}</strong>
+      {{filteredTasks().length === 1 ? 'item' : 'items'}} left
+    </span>
+
+    <ul class="filters">
+      <li>
+        <a routerLink="/"
+        (click)="handleFilter('all')"
+        [class.selected]="filter() === 'all'">All</a>
+      </li>
+      <li>
+        <a routerLink="/pending"
+        (click)="handleFilter('pending')"
+        [class.selected]="filter() === 'pending'">Pending</a>
+      </li>
+      <li>
+        <a routerLink="/completed"
+        (click)="handleFilter('completed')"
+        [class.selected]="filter() === 'completed'">Completed</a>
+      </li>
+    </ul>
+    @if (hiddlenButton) {
+      <button class="clear-completed"
+      (click)="clearCompleted()">Clear completed</button>
+    }
+</footer>

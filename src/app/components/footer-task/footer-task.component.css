@@ -1,0 +1,69 @@
+.footer {
+  padding: 1rem 1.5rem;
+  height: 20px;
+  text-align: center;
+  font-size: 15px;
+  border-top: 1px solid #e6e6e6;
+}
+
+.todo-count {
+  float: left;
+  text-align: left;
+}
+
+.todo-count strong {
+  font-weight: 300;
+}
+
+.filters {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  right: 0;
+  left: 0;
+}
+
+.filters li {
+  display: inline;
+}
+
+.filters li a {
+  color: inherit;
+  margin: 3px;
+  padding: 3px 7px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+
+.filters li a:hover {
+  border-color: #6e49fe;
+}
+
+.filters li a.selected {
+  border-color: #4c33b1;
+}
+
+.clear-completed,
+html .clear-completed:active {
+  float: right;
+  position: relative;
+  line-height: 19px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.clear-completed:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 430px) {
+  .footer {
+    height: 50px;
+  }
+
+  .filters {
+    bottom: 10px;
+  }
+}
