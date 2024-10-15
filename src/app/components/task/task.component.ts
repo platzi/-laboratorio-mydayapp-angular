@@ -31,4 +31,8 @@ export class TaskComponent {
     this.taskService.exitEditingTask();
   }
 
+  handleDeleteTask(){
+    this.taskService.deleteTask(this.index);
+  }
+
 }

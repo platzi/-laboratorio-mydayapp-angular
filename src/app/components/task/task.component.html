@@ -6,7 +6,8 @@
         <input class="toggle" type="checkbox" [checked]="task.completed"
         (click)="handleCompletedTask()"/>
         <label>{{task.title}}</label>
-        <button class="destroy"></button>
+        <button class="destroy"
+        (click)="handleDeleteTask()"></button>
     </div>
     <input class="edit" [value]="task.title"
     (keydown.enter)="handleUpdateTextTask($event)"
