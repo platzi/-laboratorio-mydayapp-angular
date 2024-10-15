@@ -72,17 +72,51 @@ export class TasksService {
     })
   }
 
-  updateTask(text: string, index: number){
+
+  updateTextTask(event: Event, index: number){
+    const newTask = (event.target as HTMLInputElement).value.trim();
+    
+    if(newTask !== ''){
+      this.tasks.update((tasks) => {
+        return tasks.map((task, position) => {
+          if(index === position){
+            return {
+              ...task,
+              title: newTask,
+              editing: false
+            }
+          }
+          return task
+        })
+      })
+    }
+  }
+  
+
+  editingTask(index: number){
     this.tasks.update((tasks) => {
       return tasks.map((task, position) => {
-        if(index === position){
+        if (position === index){
           return {
             ...task,
-            title: text,
-            editing: false
+            editing: true
           }
         }
-        return task
+        return {
+          ...task,
+          editing: false
+        };
+      })
+    })
+  }
+
+  exitEditingTask(){
+    this.tasks.update((tasks) => {
+      return tasks.map((task) => {
+        return {
+          ...task,
+          editing: false
+        };
       })
     })
   }
