@@ -3,6 +3,7 @@ import { appTask } from '../../models/task.model';
 
 @Component({
   selector: 'app-home',
+  standalone: true,
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
