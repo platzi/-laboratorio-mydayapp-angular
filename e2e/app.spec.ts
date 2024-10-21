@@ -12,6 +12,9 @@ const TODO_ITEMS = [
 
 test.describe('New Todo', () => {
   test('should allow me to add todo items', async ({ page }) => {
+    page.content().then((data) => {
+      console.log(data);
+    });
     // Create 1st todo.
     await page.locator('.new-todo').fill(TODO_ITEMS[0]);
     await page.locator('.new-todo').press('Enter');
