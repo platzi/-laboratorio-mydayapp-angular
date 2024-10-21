@@ -15,41 +15,44 @@
   <div class="container todoapp-wrapper">
     <!-- This section should be hidden by default and shown when there are todos -->
     @if (tasksList().length > 0) {
-    <section class="main">
-      <ul class="todo-list">
-        @for (task of tasksList(); track task.id) {
-        <li [class.completed]="task.completed" [class.editing]="false">
-          <div class="view">
-            <input class="toggle" type="checkbox" [checked]="task.completed" />
-            <label>{{ task.title }}</label>
-            <button class="destroy"></button>
-          </div>
-          <input class="edit" [value]="task.title" />
-        </li>
-        }
-      </ul>
-    </section>
+      <section class="main">
+        <ul class="todo-list">
+          @for (task of tasksList(); track task.id) {
+            <app-task-card [task]="task"></app-task-card>
+          }
+        </ul>
+      </section>
 
-    <!-- This footer should be hidden by default and shown when there are todos -->
+      <!-- This footer should be hidden by default and shown when there are todos -->
 
-    <footer class="footer">
-      <!-- This should be `0 items left` by default -->
-      <span class="todo-count"><strong>0</strong> item left</span>
-      <!-- Remove this if you don't implement routing -->
-      <ul class="filters">
-        <li>
-          <a routerLink="/" class="selected">All</a>
-        </li>
-        <li>
-          <a routerLink="/pending">Pending</a>
-        </li>
-        <li>
-          <a routerLink="/completed">Completed</a>
-        </li>
-      </ul>
-      <!-- Hidden if no completed items are left ↓ -->
-      <button class="clear-completed">Clear completed</button>
-    </footer>
+      <footer class="footer">
+        <!-- This should be `0 items left` by default -->
+        <span class="todo-count">
+          <strong>{{ countPendingTasks() }}</strong>
+          @if (countPendingTasks() === 1) {
+            item
+          } @else {
+            items
+          }
+          left
+        </span>
+        <!-- Remove this if you don't implement routing -->
+        <ul class="filters">
+          <li>
+            <a routerLink="/" class="selected">All</a>
+          </li>
+          <li>
+            <a routerLink="/pending">Pending</a>
+          </li>
+          <li>
+            <a routerLink="/completed">Completed</a>
+          </li>
+        </ul>
+        <!-- Hidden if no completed items are left ↓ -->
+        <button class="clear-completed" (click)="clearCompleted()">
+          Clear completed
+        </button>
+      </footer>
     }
   </div>
 </section>
