@@ -191,7 +191,7 @@ test.describe('Clear completed button', () => {
   test('should display the correct text', async ({ page }) => {
     await page.locator('.todo-list li .toggle').first().check();
     await expect(page.locator('.clear-completed')).toHaveText(
-      'Clear completed'
+      'Clear completed',
     );
   });
 
@@ -225,7 +225,7 @@ test.describe('Persistence', () => {
     await expect(todoItems).toHaveClass(['completed', '']);
 
     // Ensure there is 1 completed item.
-    checkNumberOfCompletedTodosInLocalStorage(page, 1);
+    await checkNumberOfCompletedTodosInLocalStorage(page, 1);
 
     // Now reload.
     await page.reload();
@@ -299,12 +299,12 @@ test.describe('Routing', () => {
     await page.locator('.filters >> text=Pending').click();
     // Page change - active items.
     await expect(page.locator('.filters >> text=Pending')).toHaveClass(
-      'selected'
+      'selected',
     );
     await page.locator('.filters >> text=Completed').click();
     // Page change - completed items.
     await expect(page.locator('.filters >> text=Completed')).toHaveClass(
-      'selected'
+      'selected',
     );
   });
 });
@@ -324,12 +324,12 @@ async function checkNumberOfTodosInLocalStorage(page: Page, expected: number) {
 
 async function checkNumberOfCompletedTodosInLocalStorage(
   page: Page,
-  expected: number
+  expected: number,
 ) {
   return await page.waitForFunction((e) => {
     return (
       JSON.parse(localStorage['mydayapp-angular']).filter(
-        (todo: any) => todo.completed
+        (todo: any) => todo.completed,
       ).length === e
     );
   }, expected);
