@@ -9,7 +9,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/all',
+    component: HomeComponent,
     pathMatch: 'full',
   },
 ];
