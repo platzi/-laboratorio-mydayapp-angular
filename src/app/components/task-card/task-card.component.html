@@ -1,0 +1,20 @@
+<li [class.completed]="task().completed" [class.editing]="editing()">
+  <div class="view">
+    <input
+      class="toggle"
+      type="checkbox"
+      [checked]="task().completed"
+      (change)="toggleStatus.emit()"
+    />
+    <label (dblclick)="enableEdit()">{{ task().title }}</label>
+    <button class="destroy" (click)="deleteTask.emit()"></button>
+  </div>
+  <input
+    #edit
+    class="edit"
+    [value]="task().title"
+    (focusout)="cancelEdit()"
+    (keyup.esc)="cancelEdit()"
+    (keyup.enter)="submitEdit($event)"
+  />
+</li>
