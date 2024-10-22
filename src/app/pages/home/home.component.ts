@@ -14,6 +14,9 @@ export class HomeComponent {
     const pending = this.tasksList().filter((task) => !task.completed);
     return pending.length;
   });
+  countCompletedTasks = computed(
+    () => this.tasksList().length - this.countPendingTasks(),
+  );
 
   retrieveLocalStorage(): appTask[] {
     const stored = localStorage.getItem('mydayapp-angular');
@@ -41,6 +44,31 @@ export class HomeComponent {
       };
       this.tasksList.update((list) => [...list, newTask]);
     }
+  }
+
+  editTask(taskId: string, newTitle: string) {
+    newTitle = newTitle.trim();
+    if (newTitle != '') {
+      this.tasksList.update((list) =>
+        list.map((task) => {
+          if (task.id == taskId) return { ...task, title: newTitle };
+          else return task;
+        }),
+      );
+    }
+  }
+
+  toggleCompleted(taskId: string) {
+    this.tasksList.update((list) =>
+      list.map((task) => {
+        if (task.id == taskId) return { ...task, completed: !task.completed };
+        else return task;
+      }),
+    );
+  }
+
+  deleteTask(taskId: string) {
+    this.tasksList.update((list) => list.filter((task) => task.id != taskId));
   }
 
   clearCompleted() {

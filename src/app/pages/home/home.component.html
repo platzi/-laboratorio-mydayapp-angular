@@ -18,7 +18,12 @@
       <section class="main">
         <ul class="todo-list">
           @for (task of tasksList(); track task.id) {
-            <app-task-card [task]="task"></app-task-card>
+            <app-task-card
+              [task]="task"
+              (updateTitle)="editTask(task.id, $event)"
+              (toggleStatus)="toggleCompleted(task.id)"
+              (deleteTask)="deleteTask(task.id)"
+            ></app-task-card>
           }
         </ul>
       </section>
@@ -49,9 +54,11 @@
           </li>
         </ul>
         <!-- Hidden if no completed items are left ↓ -->
-        <button class="clear-completed" (click)="clearCompleted()">
-          Clear completed
-        </button>
+        @if (countCompletedTasks() > 0) {
+          <button class="clear-completed" (click)="clearCompleted()">
+            Clear completed
+          </button>
+        }
       </footer>
     }
   </div>
