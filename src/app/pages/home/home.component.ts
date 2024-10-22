@@ -1,4 +1,12 @@
-import { Component, computed, effect, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  input,
+  OnInit,
+  signal,
+} from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { appTask } from '../../models/task.model';
 import { TaskCardComponent } from 'src/app/components/task-card/task-card.component';
 
@@ -6,10 +14,23 @@ import { TaskCardComponent } from 'src/app/components/task-card/task-card.compon
   selector: 'app-home',
   standalone: true,
   templateUrl: './home.component.html',
-  imports: [TaskCardComponent],
+  imports: [TaskCardComponent, RouterLink],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  filter = input<undefined | 'all' | 'pending' | 'completed'>();
   tasksList = signal<appTask[]>(this.retrieveLocalStorage());
+  filteredTaskList = computed<appTask[]>(() => {
+    const filter = this.filter();
+    const list = this.tasksList();
+    switch (filter) {
+      case 'pending':
+        return list.filter((task) => !task.completed);
+      case 'completed':
+        return list.filter((task) => task.completed);
+      default:
+        return [...list];
+    }
+  });
   countPendingTasks = computed(() => {
     const pending = this.tasksList().filter((task) => !task.completed);
     return pending.length;
@@ -30,6 +51,10 @@ export class HomeComponent {
       const tasks = this.tasksList();
       localStorage.setItem('mydayapp-angular', JSON.stringify(tasks));
     });
+  }
+
+  ngOnInit() {
+    console.log(this.filter());
   }
 
   addTask(event: Event) {

@@ -17,7 +17,7 @@
     @if (tasksList().length > 0) {
       <section class="main">
         <ul class="todo-list">
-          @for (task of tasksList(); track task.id) {
+          @for (task of filteredTaskList(); track task.id) {
             <app-task-card
               [task]="task"
               (updateTitle)="editTask(task.id, $event)"
@@ -44,13 +44,23 @@
         <!-- Remove this if you don't implement routing -->
         <ul class="filters">
           <li>
-            <a routerLink="/" class="selected">All</a>
+            <a
+              routerLink="/all"
+              [class.selected]="filter() === undefined || filter() === 'all'"
+              >All</a
+            >
           </li>
           <li>
-            <a routerLink="/pending">Pending</a>
+            <a routerLink="/pending" [class.selected]="filter() === 'pending'"
+              >Pending</a
+            >
           </li>
           <li>
-            <a routerLink="/completed">Completed</a>
+            <a
+              routerLink="/completed"
+              [class.selected]="filter() === 'completed'"
+              >Completed</a
+            >
           </li>
         </ul>
         <!-- Hidden if no completed items are left ↓ -->
@@ -60,6 +70,7 @@
           </button>
         }
       </footer>
+      filter:{{ filter() }}.
     }
   </div>
 </section>
