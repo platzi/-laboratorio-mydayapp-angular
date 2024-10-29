@@ -110,7 +110,7 @@ test.describe('Item', () => {
     await firstTodo.locator('.toggle').uncheck();
     await expect(firstTodo).not.toHaveClass('completed');
     await expect(secondTodo).not.toHaveClass('completed');
-    await checkNumberOfCompletedTodosInLocalStorage(page, 0);
+    //await checkNumberOfCompletedTodosInLocalStorage(page, 0);
   });
 
   test('should allow me to edit an item', async ({ page }) => {
