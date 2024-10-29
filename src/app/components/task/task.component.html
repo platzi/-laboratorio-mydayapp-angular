@@ -1,0 +1,18 @@
+@if(task) {
+    <div class="view">
+        <input 
+            class="toggle" 
+            type="checkbox" 
+            [checked]="task.completed" 
+            (change)="changeStatus($event)"
+        />
+        <label>{{ task.title }}</label>
+        <button class="destroy" (click)="remove()"></button>
+    </div>
+    <input 
+        class="edit" 
+        [value]="task.title"
+        (keydown.enter)="changeTitle($event)"
+        (keydown.Escape)="restoreTitle()"
+    />
+}
