@@ -13,7 +13,7 @@
       />
     </div>
   </header>
-  @if(filteredTasks().length > 0) {
+  @if(tasks().length > 0) {
     <div class="container todoapp-wrapper">
       <!-- This section should be hidden by default and shown when there are todos -->
       <section class="main">
@@ -24,12 +24,7 @@
               [class.editing]="task.editing"
               (dblclick)="enableEdit(task.id)"
             >
-              <app-task 
-                [task]="task" 
-                (updateStatus)="updateTaskStatus(task.id, $event)"
-                (updateTitle)="updateTaskTitle(task.id, $event)"
-                (removeTask)="removeTask($event)"
-              />
+              <app-task [task]="task"/>
             </li>
           }
           <!-- <li>
@@ -58,13 +53,13 @@
         <!-- Remove this if you don't implement routing -->
         <ul class="filters">
           <li>
-            <a [routerLink]="['/all']" [class.selected]="filter === 'all'">All</a>
+            <a [routerLink]="['/all']" [class.selected]="!filter || filter === 'all'">All</a>
           </li>
           <li>
             <a [routerLink]="['/pending']" [class.selected]="filter === 'pending'">Pending</a>
           </li>
           <li>
-            <a [routerLink]="['/completed']" routerLinkActive="selected">Completed</a>
+            <a [routerLink]="['/completed']" [class.selected]="filter === 'completed'">Completed</a>
           </li>
         </ul>
         <!-- Hidden if no completed items are left ↓ -->
