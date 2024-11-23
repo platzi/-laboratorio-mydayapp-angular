@@ -1,0 +1,35 @@
+<footer class="footer">
+  <!-- This should be `0 items left` by default -->
+  <span class="todo-count"
+    ><strong>{{ tasksLeft }}</strong> item{{
+      tasksLeft === 1 ? "" : "s"
+    }}
+    left</span
+  >
+  <!-- Remove this if you don't implement routing -->
+  <ul class="filters">
+    <li>
+      <a routerLink="/" [ngClass]="{ selected: selectedTask === 'all' }">All</a>
+    </li>
+    <li>
+      <a
+        routerLink="/pending"
+        [ngClass]="{ selected: selectedTask === 'pending' }"
+        >Pending</a
+      >
+    </li>
+    <li>
+      <a
+        routerLink="/completed"
+        [ngClass]="{ selected: selectedTask === 'completed' }"
+        >Completed</a
+      >
+    </li>
+  </ul>
+  <!-- Hidden if no completed items are left ↓ -->
+  @if (tasksDone>0) {
+  <button class="clear-completed" (click)="clearTaskCompleted()">
+    Clear completed
+  </button>
+  }
+</footer>

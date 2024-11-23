@@ -1,0 +1,15 @@
+<header class="header">
+  <div class="container">
+    <h1>My Day</h1>
+    <p>All my tasks in one place</p>
+    <form [formGroup]="formItems" (keyup.enter)="addTask()">
+      <input
+        class="new-todo"
+        placeholder="Type new todo"
+        formControlName="title"
+        type="text"
+        autofocus
+      />
+    </form>
+  </div>
+</header>

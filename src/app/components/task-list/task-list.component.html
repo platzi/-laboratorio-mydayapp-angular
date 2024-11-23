@@ -1,0 +1,32 @@
+<section class="main">
+  <ul class="todo-list">
+    @for (task of tasks; track $index) {
+
+    <li
+      [ngClass]="{
+        completed: task.completed,
+        editing: task.id === taskEdit?.id
+      }"
+      (dblclick)="editTask(task, $index)"
+    >
+      <div class="view">
+        <input
+          class="toggle"
+          type="checkbox"
+          [checked]="task.completed"
+          (click)="toggleTask(task.id)"
+        />
+        <label>{{ task.title }}</label>
+        <button class="destroy" (click)="destroyTask(task.id)"></button>
+      </div>
+      <input
+        #inputEdit
+        class="edit"
+        value="{{ task.title }}"
+        (keyup.enter)="confirmEdit($index)"
+        (keyup.esc)="cancelEdit()"
+      />
+    </li>
+    }
+  </ul>
+</section>
