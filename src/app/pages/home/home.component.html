@@ -1,5 +1,6 @@
 <section class="todoapp">
-  <header class="header">
+  <app-add-to-do></app-add-to-do>
+  <!-- <header class="header">
     <div class="container">
       <h1>My Day</h1>
       <p>All my tasks in one place</p>
@@ -8,12 +9,15 @@
         placeholder="Type new todo"
         autofocus
         type="text"
+        [formControl]="newTaskCtrl"
+        (keydown.enter) = "addToDo()"
       />
     </div>
-  </header>
+  </header> -->
   <div class="container todoapp-wrapper">
     <!-- This section should be hidden by default and shown when there are todos -->
-    <section class="main">
+     <app-to-do-list [toDos]="toDos"></app-to-do-list>
+    <!-- <section class="main">
       <ul class="todo-list">
         <li class="completed">
           <div class="view">
@@ -40,13 +44,14 @@
           <input class="edit" value="Make dishes" />
         </li>
       </ul>
-    </section>
+    </section> -->
     <!-- This footer should be hidden by default and shown when there are todos -->
-    <footer class="footer">
+    <app-to-do-summary [toDos]="toDos"></app-to-do-summary>
+    <!-- <footer class="footer"> -->
       <!-- This should be `0 items left` by default -->
-      <span class="todo-count"><strong>0</strong> item left</span>
+      <!-- <span class="todo-count"><strong>0</strong> item left</span> -->
       <!-- Remove this if you don't implement routing -->
-      <ul class="filters">
+      <!-- <ul class="filters">
         <li>
           <a routerLink="/" class="selected">All</a>
         </li>
@@ -56,9 +61,9 @@
         <li>
           <a routerLink="/completed">Completed</a>
         </li>
-      </ul>
+      </ul> -->
       <!-- Hidden if no completed items are left ↓ -->
-      <button class="clear-completed">Clear completed</button>
-    </footer>
+      <!-- <button class="clear-completed">Clear completed</button> -->
+    <!-- </footer> -->
   </div>
 </section>

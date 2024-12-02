@@ -1,0 +1,8 @@
+.text-center {
+    text-align: center;
+}
+
+.toggle:hover, 
+.destroy:hover {
+    cursor: pointer;
+}
