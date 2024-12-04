@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ToDo } from 'src/app/models/to-do.model';
+import { ToDoService } from 'src/app/services/to-do.service';
 
 @Component({
   selector: 'app-home',
@@ -6,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  toDos: ToDo[] = [];
 
-  ngOnInit(): void {
+  constructor(private toDoService: ToDoService) {
+    const toDosInStorage = this.toDoService.getToDos();
+    console.log('Trayendo de LS (constructor - home)');
+    if(toDosInStorage) {
+      this.toDos = toDosInStorage;
+    } else {
+      this.toDoService.setToDos(this.toDos);
+      console.log('Guardando en LS (constructor - home)');
+    }
   }
 
+  ngOnInit() {
+    // Suscríbete al observable para actualizar la vista automáticamente
+    this.toDoService.toDos$.subscribe((nuevosToDos) => {
+      this.toDos = nuevosToDos;
+    });
+    // this.toDos = this.toDoService.getToDos();
+    // console.log('Trayendo de LS (onInit - home)');
+  }
 }

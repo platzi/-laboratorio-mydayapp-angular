@@ -3,12 +3,31 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './pages/home/home.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
-    path: '',
+    path: 'all',
     component: HomeComponent,
     pathMatch: 'full'
-  }
+  },
+  {
+    path: 'pending',
+    component: HomeComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'completed',
+    component: HomeComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: '',
+    redirectTo: 'all',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: 'all',
+  },
 ];
 
 @NgModule({
