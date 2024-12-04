@@ -8,18 +8,14 @@ import { ToDoService } from 'src/app/services/to-do.service';
 })
 export class HomeComponent implements OnInit {
 
-  toDos: ToDo[] = [
-    // {
-    //   id: Date.now().toString(),
-    //   title: 'Start Angular Lab',
-    //   completed: false,
-    // },
-  ];
+  toDos: ToDo[] = [];
 
   constructor(private toDoService: ToDoService) {
     const toDosInStorage = this.toDoService.getToDos();
     console.log('Trayendo de LS (constructor - home)');
-    if(!toDosInStorage) {
+    if(toDosInStorage) {
+      this.toDos = toDosInStorage;
+    } else {
       this.toDoService.setToDos(this.toDos);
       console.log('Guardando en LS (constructor - home)');
     }
@@ -30,7 +26,7 @@ export class HomeComponent implements OnInit {
     this.toDoService.toDos$.subscribe((nuevosToDos) => {
       this.toDos = nuevosToDos;
     });
-    this.toDos = this.toDoService.getToDos();
-    console.log('Trayendo de LS (onInit - home)');
+    // this.toDos = this.toDoService.getToDos();
+    // console.log('Trayendo de LS (onInit - home)');
   }
 }

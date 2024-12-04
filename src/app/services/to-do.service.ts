@@ -20,7 +20,7 @@ export class ToDoService {
     localStorage.setItem(this.storageKey, JSON.stringify(data));
     // Notifica a los suscriptores el nuevo estado
     this.toDosSubject.next(data);
-    console.log('Notificando el cambio de estado');
+    console.log('Notificando nuevo guardado de ToDos');
   }
   getToDos(): ToDo[] {
     const storage = localStorage.getItem(this.storageKey);
@@ -40,7 +40,7 @@ export class ToDoService {
     this.setToDos(toDos);
     // Notifica a los suscriptores el nuevo estado
     this.toDosSubject.next(toDos);
-    console.log('Notificando el cambio de estado');
+    console.log('Notificando nuevo ToDo agregado');
   }
   deleteToDo(toDoId: string): void {
     const toDos = [...this.getToDos()];
@@ -48,7 +48,7 @@ export class ToDoService {
     this.setToDos(toDosUpdated);
     // Notifica a los suscriptores el nuevo estado
     this.toDosSubject.next(toDosUpdated);
-    console.log('Notificando el cambio de estado');
+    console.log('Notificando ToDo eliminado');
   }
 
   updateToDoTitle(toDoId: string, newTitle: string) {
@@ -66,7 +66,7 @@ export class ToDoService {
     this.setToDos(toDosUpdated);
     // Notifica a los suscriptores el nuevo estado
     this.toDosSubject.next(toDosUpdated);
-    console.log('Notificando el cambio de estado');
+    console.log('Notificando cambio de título');
   }
   updateToDoState(toDoId: string) {
     const toDos = [...this.getToDos()];
@@ -83,6 +83,6 @@ export class ToDoService {
     this.setToDos(toDosUpdated);
     // Notifica a los suscriptores el nuevo estado
     this.toDosSubject.next(toDosUpdated);
-    console.log('Notificando el cambio de estado');
+    console.log('Notificando cambio de estado');
   }
 }

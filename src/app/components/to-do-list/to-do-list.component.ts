@@ -39,39 +39,10 @@ export class ToDoListComponent implements OnChanges {
     });
   }
 
-  getToDosToShow(filter: FilterKeys) {
-    const toDosMapper: Record<FilterKeys, () => void> = {
-      all: () => this.toDosToShow = this.toDos,
-      pending: () => this.toDosToShow = this.toDos.filter((toDo) => !toDo.completed),
-      completed: () => this.toDosToShow = this.toDos.filter((toDo) => toDo.completed)
-    };
-    toDosMapper[filter]();
-    console.log('ToDos a mostrar (onChanges) - list: ', toDosMapper[filter]());
-  }
-
-  ngOnInit() {
-    console.log('Desde el onInit - list');
-    // this.route.url.subscribe((segments) => {
-    //   this.filter = segments.map((segment) => segment.path);
-    // });
-    // console.log('Segmentos', this.filter);
-    // console.log('Filtro: ', this.filter[0]);
-    // if(this.filter.length > 0) {
-    //   // console.log('Filtro válido: ', Object.keys(FilterKeys).includes(this.filter[0]));
-    //   const isValidFilter = Object.keys(FilterKeys).includes(this.filter[0]);
-    //   if (isValidFilter) {
-    //     this.getToDosToShow(this.filter[0] as FilterKeys);
-    //   } else {
-    //     console.error('Filtro no válido');
-    //     this.getToDosToShow(FilterKeys.all);
-    //   }
-    // }
-  }
-
   ngOnChanges(changes: SimpleChanges) {
     if (changes.hasOwnProperty('toDos')) {
       this.toDosToShow = this.toDos;
-      console.log('Desde el onChanges - list');
+      console.log('Cambio en ToDos (onChanges) - list');
     }
     if(this.filter.length > 0) {
       // console.log('Filtro válido: ', Object.keys(FilterKeys).includes(this.filter[0]));
@@ -83,6 +54,16 @@ export class ToDoListComponent implements OnChanges {
         this.getToDosToShow(FilterKeys.all);
       }
     }
+  }
+
+  getToDosToShow(filter: FilterKeys) {
+    const toDosMapper: Record<FilterKeys, () => void> = {
+      all: () => this.toDosToShow = this.toDos,
+      pending: () => this.toDosToShow = this.toDos.filter((toDo) => !toDo.completed),
+      completed: () => this.toDosToShow = this.toDos.filter((toDo) => toDo.completed)
+    };
+    toDosMapper[filter]();
+    console.log('ToDos a mostrar (onChanges) - list: ', toDosMapper[filter]());
   }
 
   updateToDoTitle(toDoId: string) {

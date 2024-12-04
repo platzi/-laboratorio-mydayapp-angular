@@ -6,7 +6,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { ToDoListComponent } from './components/to-do-list/to-do-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddToDoComponent } from './components/add-to-do/add-to-do.component';
-import { TestZoneJsComponent } from './components/test-zone-js/test-zone-js.component';
 import { ToDoSummaryComponent } from './components/to-do-summary/to-do-summary.component';
 import { provideRouter } from '@angular/router';
 
@@ -16,7 +15,6 @@ import { provideRouter } from '@angular/router';
     HomeComponent,
     ToDoListComponent,
     AddToDoComponent,
-    TestZoneJsComponent,
     ToDoSummaryComponent,
   ],
   imports: [
