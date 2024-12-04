@@ -2,6 +2,9 @@
 
 MyDayApp es una aplicación para gestionar tareas de forma sencilla, fácil y en donde pondrás a pruebas tus conocimientos en Angular.
 
+## Despliegue con github-pages:
+https://cdleonp.github.io/to-do-app-v2/
+
 ![preview](https://i.imgur.com/et5mmr7.png)
 
 - [Instalación](#instalación)
