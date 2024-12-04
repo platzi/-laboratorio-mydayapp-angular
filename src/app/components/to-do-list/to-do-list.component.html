@@ -1,0 +1,43 @@
+<section
+  *ngIf="toDosToShow.length > 0; else noTasks"  
+  class="main"
+>
+  <ul class="todo-list">
+    <li
+      *ngFor="let toDo of toDosToShow; index as i"
+      [class]="{
+        'completed': toDo.completed,
+        'editing': toDo.editMode
+      }"
+      (dblclick)="enableEditMode(toDo.id)"
+    >
+      <div class="view">
+        <!-- <span>{{ i + 1 }}</span> -->
+        <input
+          id="complete-to-do-{{ i + 1 }}"
+          class="toggle"
+          type="checkbox"
+          [checked]="toDo.completed"
+          (change)="updateToDoState(toDo.id)"
+        />
+        <label>{{ toDo.title }}</label>
+        <button
+          class="destroy"
+          (click)="deleteToDo(toDo.id)"
+        ></button>
+      </div>
+      <input
+        #editInput
+        id="edit-to-do-{{ i + 1 }}"
+        type="text"
+        [ngClass]="['edit', toDo.editMode ? 'editing' : '']"
+        [formControl]="newToDoTitleCtrl"
+        (keydown.enter)="updateToDoTitle(toDo.id)"
+        (keydown.escape)="disableEditMode(toDo.id)"
+      />
+    </li>
+  </ul>
+</section>
+<ng-template #noTasks>
+  <p class="text-center">No tasks.</p>
+</ng-template>
