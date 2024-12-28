@@ -1,0 +1,31 @@
+.header {
+  background-image: linear-gradient(
+    224deg,
+    hsl(240deg 100% 50%) 2%,
+    hsl(249deg 100% 59%) 63%,
+    hsl(252deg 99% 64%) 78%,
+    hsl(253deg 98% 68%) 87%,
+    hsl(254deg 96% 73%) 92%,
+    hsl(253deg 93% 77%) 96%,
+    hsl(251deg 89% 81%) 98%,
+    hsl(246deg 81% 85%) 99%,
+    hsl(232deg 68% 88%) 100%,
+    hsl(200deg 53% 90%) 100%
+  );
+  padding-bottom: 4rem;
+}
+
+.header h1 {
+  width: 100%;
+  font-size: 3rem;
+  font-weight: 200;
+  color: white;
+  padding-top: 2rem;
+  margin: 0;
+}
+
+.header h1 + p {
+  margin: 0;
+  color: white;
+  padding-bottom: 1.2rem;
+}
