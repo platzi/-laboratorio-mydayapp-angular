@@ -1,0 +1,36 @@
+<section class="main py-5">
+  <ul class="todo-list">
+    @for (task of tasks(); track task) {
+    <li
+      [class.completed]="task.completed"
+      [class.editing]="$index === editingTask"
+    >
+      <div class="view">
+        <input
+          class="toggle"
+          type="checkbox"
+          [checked]="task.completed"
+          (change)="changeTaskStatus($index)"
+        />
+        <label (dblclick)="editTask($index)">{{ task.title }}</label>
+        <button class="destroy" (click)="deleteTask($index)"></button>
+      </div>
+      <input
+        class="edit"
+        [value]="task.title"
+        (keyup.esc)="cancelEdit()"
+        (keyup.enter)="saveTask($index, $event)"
+      />
+    </li>
+    }
+
+    <!-- <li class="editing">
+      <div class="view">
+        <input class="toggle" type="checkbox" />
+        <label>Make dishes</label>
+        <button class="destroy"></button>
+      </div>
+      <input class="edit" value="Make dishes" />
+    </li> -->
+  </ul>
+</section>

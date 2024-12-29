@@ -1,0 +1,18 @@
+<header class="header">
+  <div class="container">
+    <h1>My Day</h1>
+    <p>All my tasks in one place</p>
+    <input
+      class="new-todo"
+      placeholder="Type new todo"
+      autofocus
+      type="text"
+      [formControl]="newTaskControl"
+      (keyup.enter)="createTask()"
+      (keyup.esc)="cancelNew()"
+    />
+    @if (triedIncorrectSaving) {
+    <div class="text-red-400 py-3">You need to type a task first!</div>
+    }
+  </div>
+</header>
