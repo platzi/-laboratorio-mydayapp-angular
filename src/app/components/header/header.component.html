@@ -9,6 +9,7 @@
       type="text"
       [formControl]="newTaskControl"
       (keyup.enter)="createTask()"
+      (keyup.esc)="cancelNew()"
     />
     @if (triedIncorrectSaving) {
     <div class="text-red-400 py-3">You need to type a task first!</div>

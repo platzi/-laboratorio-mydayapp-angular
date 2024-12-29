@@ -26,5 +26,11 @@ export class HeaderComponent {
 
     this.triedIncorrectSaving = false;
     this.taskService.addTask(this.newTaskControl.value);
+    this.newTaskControl.setValue('');
+  }
+
+  cancelNew() {
+    this.newTaskControl.setValue('');
+    this.triedIncorrectSaving = false;
   }
 }

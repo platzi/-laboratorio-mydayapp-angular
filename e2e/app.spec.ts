@@ -224,11 +224,12 @@ test.describe('Persistence', () => {
     await expect(todoItems).toHaveText([TODO_ITEMS[0], TODO_ITEMS[1]]);
     await expect(todoItems).toHaveClass(['completed', '']);
 
-    // Ensure there is 1 completed item.
-    checkNumberOfCompletedTodosInLocalStorage(page, 1);
 
     // Now reload.
     await page.reload();
+
+    // Ensure there is 1 completed item.
+    checkNumberOfCompletedTodosInLocalStorage(page, 1);
     await expect(todoItems).toHaveText([TODO_ITEMS[0], TODO_ITEMS[1]]);
     await expect(todoItems).toHaveClass(['completed', '']);
   });
